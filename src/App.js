@@ -1,6 +1,6 @@
 import React,{useEffect,useState} from 'react';
 import './App.css';
-import BibleText from './ylt.json'
+import BibleText from './charis.json'
 import Book from "./Book";
 import BookSelector from "./BookSelector";
 
