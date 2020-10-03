@@ -1,6 +1,5 @@
 import React,{useEffect,useState} from 'react';
 import './App.css';
-import BibleText from './charis.json'
 import Book from "./Book";
 import BookSelector from "./BookSelector";
 
@@ -10,7 +9,13 @@ function App() {
   const [chapters, setChapters] = useState([])
 
   useEffect(() => {
-    setBible(BibleText)
+    const url = 'https://raw.githubusercontent.com/theonize/charis/master/json/charis.json'
+    fetch(url)
+    .then(res=>res.json())
+    .then(data=>{
+      setBible(data)
+    })
+    .catch(error=>console.error(error))
   }, [])
 
   useEffect(() => {

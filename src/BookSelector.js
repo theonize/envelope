@@ -1,6 +1,18 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 
 function BookSelector({book, setBook}) {
+	const [books, setBooks] = useState({})
+
+	useEffect(() => {
+    const url = 'https://raw.githubusercontent.com/theonize/charis/master/json/books.json'
+    fetch(url)
+    .then(res=>res.json())
+    .then(data=>{
+      setBooks(data)
+    })
+    .catch(error=>console.error(error))
+	}, [input])
+
 	return (
 		<select
 			onChange={event=>setBook(event.target.value)}
