@@ -8,12 +8,12 @@ function Book({chapters}) {
 
 	useEffect(() => {
 		if (chapters) setVerses(chapters[chapter])
-		console.log('book',chapters)
+		// console.log('book',chapters)
 	}, [chapters,chapter])
 
-	useEffect(() => {
-		console.log('verses',verses)
-	}, [verses])
+	// useEffect(() => {
+	// 	console.log('verses',verses)
+	// }, [verses])
 
 
 	function ChapterRows() {
@@ -21,7 +21,7 @@ function Book({chapters}) {
 			return chapters.map((el,i)=>i
 				?<tr>
 					<td>{i}</td>
-					<td><Chapter chapter={chapters[i]} /></td>
+					<td><Chapter chapter={chapters[i]} key={i} /></td>
 				</tr>
 				:<></>)
 		} else{

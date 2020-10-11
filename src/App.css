@@ -15,3 +15,18 @@ td:first-child {
   font-size: 0.75rem;
   color: gray;
 }
+
+.book.selector {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.book.selection {
+  border: thin solid gray;
+  margin: 0.25vh 0.5vw;
+  padding: 0.5vh 1vw;
+}
+.book.highlight {
+  border: thin solid white;
+  border-radius: 1vh;
+}

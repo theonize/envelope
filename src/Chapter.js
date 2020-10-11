@@ -2,16 +2,18 @@ import React from 'react'
 
 function Chapter({chapter}) {
 	function Verse({index,verse}) {
-		return <tr>
-			<td>{index}</td>
-			<td>{verse}</td>
-		</tr>
+		return <span
+			data-index={index}
+			key={index}
+		>
+			{verse}&nbsp;&nbsp;
+		</span>
 	}
 
 	function Verses() {
 		if (chapter) {
 			return chapter.map((el,i)=>i
-				?<Verse index={i} verse={el} />
+				?<Verse index={i} key={i} verse={el} />
 				:<></>)
 		} else {
 			return <></>
@@ -19,10 +21,9 @@ function Chapter({chapter}) {
 	}
 
 	return (
-		<table><tbody>
+		<div>
 			<Verses />
-		</tbody>
-		</table>
+		</div>
 	)
 }
 
