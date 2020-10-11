@@ -26,8 +26,9 @@ function App() {
     <div>
       <header>
         <BookSelector book={book} setBook={setBook} />
-        <Book chapters={chapters} />
       </header>
+      
+      <Book chapters={chapters} />
     </div>
   );
 }
