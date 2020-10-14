@@ -19,9 +19,13 @@ function Book({chapters}) {
 	function ChapterRows() {
 		if (chapters) {
 			return chapters.map((el,i)=>i
-				?<tr>
-					<td>{i}</td>
-					<td><Chapter chapter={chapters[i]} key={i} /></td>
+				?<tr id={`chapter_${i}`}>
+					<td>
+						{i}
+					</td>
+					<td>
+						<Chapter chapter={chapters[i]} key={i} />
+					</td>
 				</tr>
 				:<></>)
 		} else{

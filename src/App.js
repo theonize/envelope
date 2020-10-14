@@ -1,7 +1,8 @@
 import React,{useEffect,useState} from 'react';
 import './App.css';
 import Book from "./Book";
-import BookSelector from "./BookSelector";
+import Selector from "./Selector";
+import ChapterSelector from './ChapterSelector';
 
 function App() {
   const [bible, setBible] = useState([])
@@ -25,9 +26,11 @@ function App() {
   return (
     <div>
       <header>
-        <BookSelector book={book} setBook={setBook} />
+        <Selector book={book} chapters={chapters} setBook={setBook} />
+        
+        <ChapterSelector />
       </header>
-      
+
       <Book chapters={chapters} />
     </div>
   );

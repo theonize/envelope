@@ -34,6 +34,24 @@ td:first-child {
   padding: 0.5vh 1vw;
 }
 .book.highlight {
-  border: thin solid white;
+  border: thin outset gold;
   border-radius: 1vh;
+}
+
+.chapter.selector {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.chapter.link {
+  border: thin solid white;
+  border-radius: 1vw;
+  margin: 0.1vh 0.1vw;
+  padding: 0.5vh 0.7vw;
+  color: white;
+  text-decoration: none;
+}
+.chapter.link.highlight {
+  border: thin outset gold;
+  border-radius: 0;
 }

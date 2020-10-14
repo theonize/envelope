@@ -1,8 +1,10 @@
 import React,{useEffect,useRef,useState} from 'react'
 import bookData from './books.json'
 
-function BookSelector({book, setBook}) {
+function BookSelector({book, chapters=[], setBook}) {
 	const selectable = useRef(null)
+
+	const [bookName, setBookName] = useState('Select a Book')
 	const [books, setBooks] = useState([])
 	const [show, setShow] = useState(false)
 
@@ -17,9 +19,30 @@ function BookSelector({book, setBook}) {
 		setBooks(bookData)
 	}, [])
 
+	function ChapterLink({index}) {
+		function clickHandler(event) {
+			const links = document.querySelectorAll('.chapter.link')
+			
+			links.forEach(el => el.classList.remove('highlight'))
+			event.target.classList.add('highlight')
+			toggleSelector()
+		}
+
+		if (index) return <a 
+			className="chapter link"
+			href={`#chapter_${index}`}
+			id={`chapter_link_${index}`}
+			onClick={clickHandler}
+		>{index}</a>
+		else return <></>
+	}
+
+
 	function selectBook(index) {
 		return function(event) {
 			setBook(index)
+			setBookName(books[index])
+			toggleSelector()
 		}
 	}
 
@@ -53,10 +76,16 @@ function BookSelector({book, setBook}) {
 	}
 
 	return (<>
-		<button onClick={toggleSelector}>Select a Book</button>
+		<button onClick={toggleSelector}>{bookName}</button>
 
-		<div className="book selector" ref={selectable}>
-			{books.map((el,I)=><BookSelector index={I} name={el} />)}
+		<div ref={selectable}>
+			<div className="book selector">
+				{books.map((el,I)=><BookSelector index={I} name={el} />)}
+			</div>
+
+			<div className="chapter selector">
+				{chapters ? chapters.map((el,I)=><ChapterLink key={I} index={I} />) : ''}
+			</div>
 		</div>
 	</>)
 }
