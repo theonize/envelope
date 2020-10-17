@@ -22,6 +22,7 @@ function Book({chapters}) {
 				?<tr id={`chapter_${i}`}>
 					<td>
 						{i}
+						<span id={`chapter_${i}_verse`}></span>
 					</td>
 					<td>
 						<Chapter chapter={chapters[i]} key={i} />
