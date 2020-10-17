@@ -12,9 +12,9 @@ function Chapter({chapter}) {
 
 	function Verses() {
 		if (chapter) {
-			return chapter.map((el,i)=>i
-				?<Verse index={i} key={i} verse={el} />
-				:<></>)
+			return chapter.map((el,i)=>{
+				if (i) return <Verse index={i} key={i} verse={el} />
+			})
 		} else {
 			return <></>
 		}

@@ -2,33 +2,28 @@ import React,{useEffect,useState} from 'react'
 import Chapter from "./Chapter";
 
 function Book({chapters}) {
-	const [chapter, setChapter] = useState(1)
-	const [verses, setVerses] = useState([])
+	const [chapter, ] = useState(1)
+	const [, setVerses] = useState([])
 
 
 	useEffect(() => {
 		if (chapters) setVerses(chapters[chapter])
-		// console.log('book',chapters)
 	}, [chapters,chapter])
-
-	// useEffect(() => {
-	// 	console.log('verses',verses)
-	// }, [verses])
-
 
 	function ChapterRows() {
 		if (chapters) {
-			return chapters.map((el,i)=>i
-				?<tr id={`chapter_${i}`}>
-					<td>
-						{i}
-						<span id={`chapter_${i}_verse`}></span>
-					</td>
-					<td>
-						<Chapter chapter={chapters[i]} key={i} />
-					</td>
-				</tr>
-				:<></>)
+			return chapters.map((el,i)=>{
+				if (i) {
+					return <tr key={i} id={`chapter_${i}`}>
+						<td>
+							{i}
+						</td>
+						<td>
+							<Chapter chapter={chapters[i]} key={i} />
+						</td>
+					</tr>
+				}
+			})
 		} else{
 			return <></>
 		}

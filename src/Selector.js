@@ -9,15 +9,24 @@ function BookSelector({book, chapters=[], setBook}) {
 	const [show, setShow] = useState(false)
 
 	useEffect(() => {
-  //   const url = 'https://raw.githubusercontent.com/theonize/charis/master/json/books.json'
-  //   fetch(url)
-  //   .then(res=>res.json())
-  //   .then(data=>{
-  //     setBooks(data)
-  //   })
-	//   .catch(error=>console.error(error))
 		setBooks(bookData)
-	}, [])
+	}, [setBooks])
+
+	function BookSelector({index,name}) {
+		if (index) {
+			const classes = ['book','selection']
+			
+			if (index === book) classes.push('highlight')
+
+			return <span
+				className={classes.join(' ')}
+				key={index}
+				onClick={selectBook(index)}
+			>{name}</span>
+		} else {
+			return <></>
+		}
+	}
 
 	function ChapterLink({index}) {
 		function clickHandler(event) {
@@ -42,23 +51,6 @@ function BookSelector({book, chapters=[], setBook}) {
 		return function(event) {
 			setBook(index)
 			setBookName(books[index])
-			toggleSelector()
-		}
-	}
-
-	function BookSelector({index,name}) {
-		if (index) {
-			const classes = ['book','selection']
-			
-			if (index === book) classes.push('highlight')
-
-			return <span
-				className={classes.join(' ')}
-				key={index}
-				onClick={selectBook(index)}
-			>{name}</span>
-		} else {
-			return <></>
 		}
 	}
 
@@ -72,21 +64,20 @@ function BookSelector({book, chapters=[], setBook}) {
 			setShow(true)
 			console.log('show')
 		}
-
 	}
 
 	return (<>
-		<button onClick={toggleSelector}>{bookName}</button>
-
 		<div ref={selectable}>
 			<div className="book selector">
-				{books.map((el,I)=><BookSelector index={I} name={el} />)}
+				{books.map((el,I)=><BookSelector index={I} key={I} name={el} />)}
 			</div>
 
 			<div className="chapter selector">
 				{chapters ? chapters.map((el,I)=><ChapterLink key={I} index={I} />) : ''}
 			</div>
 		</div>
+
+		<button onClick={toggleSelector}>{bookName}</button>
 	</>)
 }
 
